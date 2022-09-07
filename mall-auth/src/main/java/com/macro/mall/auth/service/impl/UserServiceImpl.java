@@ -1,12 +1,11 @@
 package com.macro.mall.auth.service.impl;
 
-import com.macro.mall.auth.domain.SecurityUser;
 import com.macro.mall.auth.constant.MessageConstant;
+import com.macro.mall.auth.domain.SecurityUser;
 import com.macro.mall.auth.service.UmsAdminService;
 import com.macro.mall.auth.service.UmsMemberService;
 import com.macro.mall.common.constant.AuthConstant;
 import com.macro.mall.common.domain.UserDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
@@ -16,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -25,11 +25,11 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
-    @Autowired
+    @Resource
     private UmsAdminService adminService;
-    @Autowired
+    @Resource
     private UmsMemberService memberService;
-    @Autowired
+    @Resource
     private HttpServletRequest request;
 
     @Override

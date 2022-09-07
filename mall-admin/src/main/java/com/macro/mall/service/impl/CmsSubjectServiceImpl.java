@@ -5,10 +5,10 @@ import com.macro.mall.mapper.CmsSubjectMapper;
 import com.macro.mall.model.CmsSubject;
 import com.macro.mall.model.CmsSubjectExample;
 import com.macro.mall.service.CmsSubjectService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class CmsSubjectServiceImpl implements CmsSubjectService {
-    @Autowired
+    @Resource
     private CmsSubjectMapper subjectMapper;
 
     @Override

@@ -19,15 +19,14 @@ import com.macro.mall.model.UmsMemberLevelExample;
 import com.macro.mall.portal.service.AuthService;
 import com.macro.mall.portal.service.UmsMemberCacheService;
 import com.macro.mall.portal.service.UmsMemberService;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -38,19 +37,19 @@ import java.util.*;
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UmsMemberServiceImpl.class);
-    @Autowired
+    @Resource
     private UmsMemberMapper memberMapper;
-    @Autowired
+    @Resource
     private UmsMemberLevelMapper memberLevelMapper;
-    @Autowired
+    @Resource
     private UmsMemberCacheService memberCacheService;
     @Value("${redis.key.authCode}")
     private String REDIS_KEY_PREFIX_AUTH_CODE;
     @Value("${redis.expire.authCode}")
     private Long AUTH_CODE_EXPIRE_SECONDS;
-    @Autowired
+    @Resource
     private AuthService authService;
-    @Autowired
+    @Resource
     private HttpServletRequest request;
 
     @Override

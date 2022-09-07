@@ -7,7 +7,6 @@ import com.macro.mall.common.constant.AuthConstant;
 import com.macro.mall.common.domain.UserDto;
 import com.macro.mall.config.IgnoreUrlsConfig;
 import com.nimbusds.jose.JWSObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -21,6 +20,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -35,9 +35,9 @@ import java.util.stream.Collectors;
  */
 @Component
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
-    @Autowired
+    @Resource
     private IgnoreUrlsConfig ignoreUrlsConfig;
 
     @Override

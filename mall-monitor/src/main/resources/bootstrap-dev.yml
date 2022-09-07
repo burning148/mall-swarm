@@ -3,6 +3,4 @@ spring:
     nacos:
       discovery:
         server-addr: http://39.108.74.170:8848
-      config:
-        server-addr: http://39.108.74.170:8848
-        file-extension: yaml
+        cluster-name: mall-monitor

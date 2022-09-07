@@ -8,8 +8,9 @@ import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.demo.dto.UmsAdminLoginParam;
 import com.macro.mall.demo.service.FeignAdminService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * Feign调用mall-admin接口示例
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/feign/admin")
 public class FeignAdminController {
-    @Autowired
+    @Resource
     private FeignAdminService adminService;
 
     @PostMapping("/login")

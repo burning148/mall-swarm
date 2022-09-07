@@ -8,17 +8,15 @@ import com.macro.mall.dto.UmsAdminLoginParam;
 import com.macro.mall.dto.UmsAdminParam;
 import com.macro.mall.dto.UpdateAdminPasswordParam;
 import com.macro.mall.model.UmsAdmin;
-import com.macro.mall.model.UmsPermission;
 import com.macro.mall.model.UmsRole;
 import com.macro.mall.service.UmsAdminService;
 import com.macro.mall.service.UmsRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,18 +26,17 @@ import java.util.stream.Collectors;
  * 后台用户管理
  * Created by macro on 2018/4/26.
  */
-@Controller
+@RestController
 @Api(tags = "UmsAdminController", description = "后台用户管理")
 @RequestMapping("/admin")
 public class UmsAdminController {
-    @Autowired
+    @Resource
     private UmsAdminService adminService;
-    @Autowired
+    @Resource
     private UmsRoleService roleService;
 
     @ApiOperation(value = "用户注册")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/register")
     public CommonResult<UmsAdmin> register(@Validated @RequestBody UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = adminService.register(umsAdminParam);
         if (umsAdmin == null) {
@@ -49,15 +46,13 @@ public class UmsAdminController {
     }
 
     @ApiOperation(value = "登录以后返回token")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/login")
     public CommonResult login(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
         return adminService.login(umsAdminLoginParam.getUsername(),umsAdminLoginParam.getPassword());
     }
 
     @ApiOperation(value = "获取当前登录用户信息")
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/info")
     public CommonResult getAdminInfo() {
         UmsAdmin umsAdmin = adminService.getCurrentAdmin();
         Map<String, Object> data = new HashMap<>();
@@ -73,15 +68,13 @@ public class UmsAdminController {
     }
 
     @ApiOperation(value = "登出功能")
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/logout")
     public CommonResult logout() {
         return CommonResult.success(null);
     }
 
     @ApiOperation("根据用户名或姓名分页获取用户列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/list")
     public CommonResult<CommonPage<UmsAdmin>> list(@RequestParam(value = "keyword", required = false) String keyword,
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
@@ -90,16 +83,14 @@ public class UmsAdminController {
     }
 
     @ApiOperation("获取指定用户信息")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/{id}")
     public CommonResult<UmsAdmin> getItem(@PathVariable Long id) {
         UmsAdmin admin = adminService.getItem(id);
         return CommonResult.success(admin);
     }
 
     @ApiOperation("修改指定用户信息")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/update/{id}")
     public CommonResult update(@PathVariable Long id, @RequestBody UmsAdmin admin) {
         int count = adminService.update(id, admin);
         if (count > 0) {
@@ -109,8 +100,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation("修改指定用户密码")
-    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/updatePassword")
     public CommonResult updatePassword(@RequestBody UpdateAdminPasswordParam updatePasswordParam) {
         int status = adminService.updatePassword(updatePasswordParam);
         if (status > 0) {
@@ -127,8 +117,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation("删除指定用户信息")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/delete/{id}")
     public CommonResult delete(@PathVariable Long id) {
         int count = adminService.delete(id);
         if (count > 0) {
@@ -138,8 +127,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation("修改帐号状态")
-    @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/updateStatus/{id}")
     public CommonResult updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(status);
@@ -151,8 +139,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation("给用户分配角色")
-    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/role/update")
     public CommonResult updateRole(@RequestParam("adminId") Long adminId,
                                    @RequestParam("roleIds") List<Long> roleIds) {
         int count = adminService.updateRole(adminId, roleIds);
@@ -163,16 +150,14 @@ public class UmsAdminController {
     }
 
     @ApiOperation("获取指定用户的角色")
-    @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/role/{adminId}")
     public CommonResult<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
         List<UmsRole> roleList = adminService.getRoleList(adminId);
         return CommonResult.success(roleList);
     }
 
     @ApiOperation("根据用户名获取通用用户信息")
-    @RequestMapping(value = "/loadByUsername", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/loadByUsername")
     public UserDto loadUserByUsername(@RequestParam String username) {
         UserDto userDTO = adminService.loadUserByUsername(username);
         return userDTO;

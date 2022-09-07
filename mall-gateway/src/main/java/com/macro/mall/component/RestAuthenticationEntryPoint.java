@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 自定义返回结果：没有登录或token过期时
@@ -29,7 +29,7 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
         response.getHeaders().set("Access-Control-Allow-Origin","*");
         response.getHeaders().set("Cache-Control","no-cache");
         String body= JSONUtil.toJsonStr(CommonResult.unauthorized(e.getMessage()));
-        DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
+        DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
         return response.writeWith(Mono.just(buffer));
     }
 }

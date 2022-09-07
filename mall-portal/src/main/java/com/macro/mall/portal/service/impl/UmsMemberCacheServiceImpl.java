@@ -2,12 +2,12 @@ package com.macro.mall.portal.service.impl;
 
 import com.macro.mall.common.annotation.CacheException;
 import com.macro.mall.common.service.RedisService;
-import com.macro.mall.mapper.UmsMemberMapper;
 import com.macro.mall.model.UmsMember;
 import com.macro.mall.portal.service.UmsMemberCacheService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * UmsMemberCacheService实现类
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UmsMemberCacheServiceImpl implements UmsMemberCacheService {
-    @Autowired
+    @Resource
     private RedisService redisService;
     @Value("${redis.database}")
     private String REDIS_DATABASE;

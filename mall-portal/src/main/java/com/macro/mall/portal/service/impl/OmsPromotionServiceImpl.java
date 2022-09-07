@@ -9,10 +9,9 @@ import com.macro.mall.portal.domain.CartPromotionItem;
 import com.macro.mall.portal.domain.PromotionProduct;
 import com.macro.mall.portal.service.OmsPromotionService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
@@ -23,7 +22,7 @@ import java.util.*;
  */
 @Service
 public class OmsPromotionServiceImpl implements OmsPromotionService {
-    @Autowired
+    @Resource
     private PortalProductDao portalProductDao;
 
     @Override

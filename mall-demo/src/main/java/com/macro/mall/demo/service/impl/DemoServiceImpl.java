@@ -7,9 +7,9 @@ import com.macro.mall.mapper.PmsBrandMapper;
 import com.macro.mall.model.PmsBrand;
 import com.macro.mall.model.PmsBrandExample;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class DemoServiceImpl implements DemoService {
-    @Autowired
+    @Resource
     private PmsBrandMapper brandMapper;
 
     @Override

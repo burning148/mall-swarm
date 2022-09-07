@@ -5,10 +5,10 @@ import com.macro.mall.mapper.SmsHomeBrandMapper;
 import com.macro.mall.model.SmsHomeBrand;
 import com.macro.mall.model.SmsHomeBrandExample;
 import com.macro.mall.service.SmsHomeBrandService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class SmsHomeBrandServiceImpl implements SmsHomeBrandService {
-    @Autowired
+    @Resource
     private SmsHomeBrandMapper homeBrandMapper;
     @Override
     public int create(List<SmsHomeBrand> homeBrandList) {

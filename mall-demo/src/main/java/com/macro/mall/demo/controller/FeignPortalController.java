@@ -3,8 +3,9 @@ package com.macro.mall.demo.controller;
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.demo.service.FeignPortalService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * Feign调用mall-portal接口示例
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/feign/portal")
 public class FeignPortalController {
 
-    @Autowired
+    @Resource
     private FeignPortalService portalService;
 
     @PostMapping("/login")

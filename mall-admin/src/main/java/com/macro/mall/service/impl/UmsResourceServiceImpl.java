@@ -8,12 +8,11 @@ import com.macro.mall.mapper.UmsResourceMapper;
 import com.macro.mall.mapper.UmsRoleMapper;
 import com.macro.mall.mapper.UmsRoleResourceRelationMapper;
 import com.macro.mall.model.*;
-import com.macro.mall.service.UmsAdminCacheService;
 import com.macro.mall.service.UmsResourceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,13 +22,13 @@ import java.util.stream.Collectors;
  */
 @Service
 public class UmsResourceServiceImpl implements UmsResourceService {
-    @Autowired
+    @Resource
     private UmsResourceMapper resourceMapper;
-    @Autowired
+    @Resource
     private UmsRoleMapper roleMapper;
-    @Autowired
+    @Resource
     private UmsRoleResourceRelationMapper roleResourceRelationMapper;
-    @Autowired
+    @Resource
     private RedisService redisService;
     @Value("${spring.application.name}")
     private String applicationName;

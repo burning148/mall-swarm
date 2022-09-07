@@ -5,10 +5,10 @@ import com.macro.mall.mapper.PmsSkuStockMapper;
 import com.macro.mall.model.PmsSkuStock;
 import com.macro.mall.model.PmsSkuStockExample;
 import com.macro.mall.service.PmsSkuStockService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,9 +17,9 @@ import java.util.List;
  */
 @Service
 public class PmsSkuStockServiceImpl implements PmsSkuStockService {
-    @Autowired
+    @Resource
     private PmsSkuStockMapper skuStockMapper;
-    @Autowired
+    @Resource
     private PmsSkuStockDao skuStockDao;
 
     @Override

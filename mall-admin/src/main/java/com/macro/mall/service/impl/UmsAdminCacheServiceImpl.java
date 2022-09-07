@@ -4,9 +4,10 @@ import com.macro.mall.common.service.RedisService;
 import com.macro.mall.model.UmsAdmin;
 import com.macro.mall.service.UmsAdminCacheService;
 import com.macro.mall.service.UmsAdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * UmsAdminCacheService实现类
@@ -14,9 +15,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
-    @Autowired
+    @Resource
     private UmsAdminService adminService;
-    @Autowired
+    @Resource
     private RedisService redisService;
     @Value("${redis.database}")
     private String REDIS_DATABASE;
